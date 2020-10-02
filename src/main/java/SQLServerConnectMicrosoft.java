@@ -16,6 +16,7 @@ public class SQLServerConnectMicrosoft {
             Statement statement = con.createStatement();
             String sqlQuere = "SELECT TOP 10 * FROM Table_888";
             ResultSet rs = statement.executeQuery(sqlQuere);
+            
 
             while (rs.next()){
                 System.out.println(rs.getInt("data"));
