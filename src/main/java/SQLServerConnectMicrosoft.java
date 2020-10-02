@@ -9,18 +9,26 @@ public class SQLServerConnectMicrosoft {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
 //            Connection con = DriverManager.getConnection("jdbc:sqlserver://CLK5101N","LoginSQL", "12345");
 
-            String connectionUrl = "jdbc:sqlserver://localhost:55319;" +
+            String connectionUrl = "jdbc:sqlserver://CLK5101N:55319;" +
                     "databaseName=DATA_WINCC_TEST;user=LoginSQL;password=12345";
             Connection con = DriverManager.getConnection(connectionUrl);
-            System.out.println(con);
             Statement statement = con.createStatement();
+            //String sqlQuere = "SELECT TOP 10 * FROM Table_888";
             String sqlQuere = "SELECT TOP 10 * FROM Table_888";
-            ResultSet rs = statement.executeQuery(sqlQuere);
-            
+            //ResultSet rs = statement.executeQuery(sqlQuere);
 
-            while (rs.next()){
-                System.out.println(rs.getInt("data"));
+            while (true){
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                ResultSet rs = statement.executeQuery(sqlQuere);
+                while (rs.next()){
+                    System.out.println(rs.getInt("data"));
+                }
             }
+
 
         } catch (InstantiationException e) {
             e.printStackTrace();
